@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laurent Desmet | Generative AI Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #f43f5e;
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Mesh Background */
+        .mesh-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.05) 0%, transparent 50%);
+            filter: blur(80px);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .badge {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-sub {
+            max-width: 600px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* About Me Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 3rem; }
+        }
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .stat-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Course Modules */
+        .course-modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-card {
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .module-number {
+            font-size: 3rem;
+            font-weight: 800;
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            opacity: 0.05;
+        }
+
+        /* Submissions List */
+        .submissions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .submission-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text);
+            transition: background 0.3s;
+        }
+
+        .submission-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+        }
+
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+    </style>
+</head>
+<body>
+
+    <div class="mesh-bg"></div>
+
+    <nav>
+        <div class="logo">LD.GENAI</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#course">Course</a>
+            <a href="#submissions">Submissions</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="badge">LIVE COHORT 2025</div>
+        <h1>Laurent Desmet</h1>
+        <p class="hero-sub">PhD Candidate at Antwerp University & Primary Care Expert bridging the gap between Nursing Research and Generative AI.</p>
+        <div class="cta-group">
+            <a href="#submissions" class="btn btn-primary">View Assignments</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="glass-card">
+                <div class="stat-item">
+                    <div class="stat-label">Current Role</div>
+                    <div class="stat-value">PhD Candidate (2023-2027)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Institution</div>
+                    <div class="stat-value">Antwerp University</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Focus</div>
+                    <div class="stat-value">Primary Care Nursing & Task Redistribution</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Location</div>
+                    <div class="stat-value">Antwerp, Belgium</div>
+                </div>
+            </div>
+            <div>
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    As a dedicated researcher and guest lecturer, I am passionate about exploring how technology, specifically Generative AI, can sustainably implement and evolve nursing roles in general practices.
+                </p>
+                <p style="opacity: 0.8;">
+                    My journey spans from clinical primary care nursing to academic excellence, having received the award for the most academic master's thesis in 2023. I am now integrating AI-driven automation into my research workflow to enhance productivity and scientific communication.
+                </p>
+                <a href="#" class="btn btn-primary" style="margin-top: 2rem; padding: 0.8rem 1.5rem;">Contact for Collaboration</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="course">
+        <h2 class="section-title">The GRAPH Course</h2>
+        <p style="text-align: center; max-width: 700px; margin: -2rem auto 3rem auto; opacity: 0.7;">
+            An 8-week intensive program focusing on No-Code AI tools for responsible task automation in work and research environments.
+        </p>
+        
+        <div class="course-modules">
+            <!-- Module 1 -->
+            <div class="glass-card module-card">
+                <div class="module-number">01</div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Web & Documents</h3>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Mastering LLMs, Markdown, LaTeX, and building research websites using tools like ChatGPT Canvas.</p>
+            </div>
+            <!-- Module 2 -->
+            <div class="glass-card module-card">
+                <div class="module-number">02</div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Data Analysis</h3>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Leveraging AI for automated data cleaning, exploratory analysis, and visualization of research datasets.</p>
+            </div>
+            <!-- Module 3 -->
+            <div class="glass-card module-card">
+                <div class="module-number">03</div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Literature Reviews</h3>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Using AI assistants to synthesize evidence, track citations, and conduct systematic literature scans.</p>
+            </div>
+            <!-- Module 4 -->
+            <div class="glass-card module-card">
+                <div class="module-number">04</div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Advanced Prompting</h3>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Techniques for chain-of-thought prompting and building custom GPTs for specific research tasks.</p>
+            </div>
+            <!-- Module 5 -->
+            <div class="glass-card module-card">
+                <div class="module-number">05</div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">AI Automation</h3>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Building AI agents for complex automation flows and setting up email response automations.</p>
+            </div>
+            <!-- Module 6 -->
+            <div class="glass-card module-card">
+                <div class="module-number">06</div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Communication</h3>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Generating research summaries, scientific figures, and video abstracts for effective outreach.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="submissions">
+        <h2 class="section-title">Weekly Submissions</h2>
+        <div class="submissions-list">
+            <a href="#" class="submission-item">
+                <div>
+                    <h4 style="margin-bottom: 0.2rem;">Week 1: Research Website & Markdown</h4>
+                    <p style="font-size: 0.8rem; opacity: 0.6;">Automating document structure and web presence.</p>
+                </div>
+                <span class="status-badge">Placeholder</span>
+            </a>
+            <a href="#" class="submission-item">
+                <div>
+                    <h4 style="margin-bottom: 0.2rem;">Week 2: Data Insights with AI</h4>
+                    <p style="font-size: 0.8rem; opacity: 0.6;">Cleaning and visualizing primary care datasets.</p>
+                </div>
+                <span class="status-badge">Placeholder</span>
+            </a>
+            <a href="#" class="submission-item">
+                <div>
+                    <h4 style="margin-bottom: 0.2rem;">Week 3: Literature Synthesis Tool</h4>
+                    <p style="font-size: 0.8rem; opacity: 0.6;">Automated literature mapping for chronic care protocols.</p>
+                </div>
+                <span class="status-badge">Placeholder</span>
+            </a>
+            <a href="#" class="submission-item">
+                <div>
+                    <h4 style="margin-bottom: 0.2rem;">Capstone Project: AI-Driven Protocol Assistant</h4>
+                    <p style="font-size: 0.8rem; opacity: 0.6;">Final showcase of responsible AI implementation.</p>
+                </div>
+                <span class="status-badge" style="color: var(--accent); border-color: var(--accent);">Coming Soon</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Laurent Desmet. Built for "Generative AI for Work & Research" | Antwerp University</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple reveal animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            card.style.transition = "all 0.6s ease-out";
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
