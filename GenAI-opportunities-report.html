@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI Opportunities Report - Geneeskunde voor het Volk Deurne</title>
+    <style>
+        :root {
+            --primary-color: #0d6156; /* Medical Teal */
+            --primary-light: #e6f2f0;
+            --secondary-color: #e05a47; /* Warm Action Orange/Red */
+            --secondary-light: #fdf5f3;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #168072 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(13, 97, 86, 0.15);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 18px;
+            margin: 0;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+
+        /* Two Column Layout for Overview */
+        .grid-two-cols {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-two-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .overview-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .client-request-box {
+            background: linear-gradient(135deg, var(--secondary-light) 0%, #fffbf9 100%);
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            padding: 25px;
+            height: calc(100% - 50px);
+        }
+
+        .client-request-box h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .client-request-quote {
+            font-style: italic;
+            font-size: 16px;
+            color: #5d4037;
+            background-color: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px dashed rgba(224, 90, 71, 0.2);
+        }
+
+        /* Section Titles */
+        .section-header {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            margin: 5px 0 0 0;
+            font-size: 16px;
+        }
+
+        /* Opportunities Grid */
+        .opportunities-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .opp-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 8px 1fr;
+            transition: var(--transition);
+        }
+
+        .opp-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .opp-accent-blue { background-color: #3498db; }
+        .opp-accent-green { background-color: var(--primary-color); }
+        .opp-accent-orange { background-color: var(--secondary-color); }
+        .opp-accent-purple { background-color: #9b59b6; }
+
+        .opp-content {
+            padding: 30px;
+        }
+
+        .opp-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 15px;
+            text-transform: uppercase;
+        }
+
+        .badge-impact-high { background-color: rgba(13, 97, 86, 0.1); color: var(--primary-color); }
+        .badge-impact-med { background-color: rgba(52, 152, 219, 0.1); color: #3498db; }
+        .badge-comp-low { background-color: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+        .badge-comp-med { background-color: rgba(241, 196, 15, 0.1); color: #f1c40f; }
+        .badge-timeline { background-color: #f0f3f4; color: var(--text-dark); }
+
+        .opp-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .opp-title-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .opp-icon {
+            font-size: 24px;
+        }
+
+        .opp-description {
+            font-size: 15px;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+        }
+
+        .opp-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .opp-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .detail-block h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary-color);
+        }
+
+        .detail-block ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #34495e;
+        }
+
+        .detail-block li {
+            margin-bottom: 6px;
+        }
+
+        .guardrail-box {
+            background-color: rgba(230, 126, 34, 0.08);
+            border: 1px solid rgba(230, 126, 34, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 14px;
+            color: #d35400;
+        }
+
+        .guardrail-box h5 {
+            margin: 0 0 5px 0;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Matrix Section */
+        .matrix-section {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+        }
+
+        .matrix-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .matrix-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .matrix-text ul {
+            padding-left: 20px;
+        }
+
+        .matrix-text li {
+            margin-bottom: 12px;
+        }
+
+        /* Table of Opportunities */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: left;
+            padding: 12px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Next Steps Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            padding: 0;
+            list-style: none;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-light);
+            left: 31px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 70px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 4px solid var(--white);
+            left: 21px;
+            top: 5px;
+            box-shadow: 0 0 0 4px var(--primary-light);
+            z-index: 1;
+        }
+
+        .timeline-badge {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-light);
+            border-top: 1px solid #e0e0e0;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-badge">Strategic Roadmap</div>
+        <h1>Generative AI Opportunities Report</h1>
+        <p>A tailored blueprint for <strong>Geneeskunde voor het Volk Deurne</strong>, integrating compassionate community medicine with state-of-the-art AI technology to optimize patient workflows, outreach, and administrative productivity.</p>
+    </header>
+
+    <!-- Overview Grid -->
+    <div class="grid-two-cols">
+        <!-- Executive Summary -->
+        <div class="card">
+            <h3 class="overview-title">
+                <span>🩺</span> Executive Summary & Client Context
+            </h3>
+            <p><strong>Geneeskunde voor het Volk Deurne (GVHV Deurne)</strong> has been a pillar of the local Deurne community since 1980, operating as a multidisciplinary group practice that integrates primary care, general medicine, nursing, dietary counseling, and social support. Functioning under the <em>forfaitair systeem</em> (a flat-rate medical fund payment system where consultations are free for registered patients), the clinic prioritizes preventative care and social activism.</p>
+            <p>Because of this high-accessibility model, GVHV Deurne serves a dense, socioeconomically diverse, and multilingual population. This creates substantial administrative overhead, language barriers, and highly localized patient education challenges. Generative AI offers a strategic mechanism to streamline clinical administration, alleviate staff burnout, and broaden outreach without compromising patient privacy or safety.</p>
+        </div>
+
+        <!-- Client Request Callout -->
+        <div>
+            <div class="client-request-box">
+                <h3><span>💡</span> Incoming Request Focus</h3>
+                <p>A query was submitted seeking targeted expert support for a specific, immediate digital intervention:</p>
+                
+                <div class="client-request-quote">
+                    "Create a chatbot for on our website"
+                    <div style="font-size: 12px; margin-top: 8px; font-weight: bold; color: var(--text-light);">
+                        — Submitted by: Laurent Desmet (laurent.desmet@outlook.be)
+                    </div>
+                </div>
+
+                <p style="font-size: 14px; margin: 0; color: var(--text-dark);">
+                    This report details a direct strategy for building this <strong>Web-Based Patient Navigator Chatbot</strong>, while introducing three further high-impact opportunities to amplify the clinic's broader healthcare mission.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Opportunities Header -->
+    <div class="section-header">
+        <h2>Concrete Generative AI Opportunities</h2>
+        <p>Four strategic applications designed specifically for GVHV Deurne’s operational framework.</p>
+    </div>
+
+    <!-- Opportunities List -->
+    <div class="opportunities-container">
+
+        <!-- Opportunity 1 -->
+        <div class="opp-card">
+            <div class="opp-accent-orange"></div>
+            <div class="opp-content">
+                <div class="opp-meta">
+                    <span class="badge badge-impact-high">High Impact</span>
+                    <span class="badge badge-comp-low">Low Complexity</span>
+                    <span class="badge badge-timeline">Timeline: 4-6 Weeks</span>
+                </div>
+                <div class="opp-title">
+                    <span class="opp-title-text"><span class="opp-icon">💬</span> Opportunity 1: Multilingual Web-Based Patient Navigator (Requested Chatbot)</span>
+                </div>
+                <div class="opp-description">
+                    A user-friendly, conversational AI assistant embedded on the GVHV Deurne website to help patients navigate clinic registration, appointment instructions (linking with <em>Digitale Wachtkamer</em>), and general administrative FAQs. It uses Retrieval-Augmented Generation (RAG) to ensure responses are strictly based on approved clinic procedures.
+                </div>
+                
+                <div class="opp-details-grid">
+                    <div class="detail-block">
+                        <h4>How It Works</h4>
+                        <ul>
+                            <li><strong>Language Processing:</strong> Patients converse in their native language (Dutch, English, Arabic, Turkish, French). The LLM processes the inquiry and responds dynamically.</li>
+                            <li><strong>Administrative Support:</strong> Directs patients on how to enroll in the flat-rate (forfaitair) system, outlines required documents, and assists with using the booking tool.</li>
+                            <li><strong>Voice-to-Text:</strong> Offers voice input options to improve access for low-literacy patients.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h4>Expected Impact</h4>
+                        <ul>
+                            <li><strong>70% Reduction</strong> in simple administrative telephone calls (e.g., "What are your opening hours?" or "How do I register?").</li>
+                            <li><strong>Greater Inclusivity:</strong> Enables non-Dutch-speaking patients to access vital clinic information in their own language instantly.</li>
+                            <li><strong>Reduced Staff Fatigue:</strong> Allows reception staff to focus on critical patient reception and phone triaging.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guardrail-box">
+                    <h5>🚨 Strict Clinical Guardrail:</h5>
+                    The chatbot is strictly prohibited from rendering medical diagnoses. If the patient mentions clinical symptoms (e.g., "chest pain", "fever"), the AI automatically triggers a hardcoded override: <em>"This assistant cannot provide medical advice. If you are experiencing symptoms, please call the clinic directly at 03 320 85 20, or call 112 in case of emergencies."</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- Opportunity 2 -->
+        <div class="opp-card">
+            <div class="opp-accent-green"></div>
+            <div class="opp-content">
+                <div class="opp-meta">
+                    <span class="badge badge-impact-high">High Impact</span>
+                    <span class="badge badge-comp-med">Medium Complexity</span>
+                    <span class="badge badge-timeline">Timeline: 8-12 Weeks</span>
+                </div>
+                <div class="opp-title">
+                    <span class="opp-title-text"><span class="opp-icon">🗣️</span> Opportunity 2: Real-Time Translation & Intake Companion for Social Workers & Nurses</span>
+                </div>
+                <div class="opp-description">
+                    A secure, tablet-based clinical intake tool utilizing speech-to-text and Generative AI to translate, summarize, and structure patient medical histories during intake interviews. Designed specifically to assist nurses and social workers serving GVHV Deurne's highly diverse patient base.
+                </div>
+                
+                <div class="opp-details-grid">
+                    <div class="detail-block">
+                        <h4>How It Works</h4>
+                        <ul>
+                            <li><strong>Consultation Capture:</strong> With the patient's explicit consent, the tablet records the conversational intake.</li>
+                            <li><strong>Contextual Translation:</strong> The AI translates foreign languages spoken by the patient in real-time, displaying readable text to the provider.</li>
+                            <li><strong>Clinical Summarization:</strong> The AI extracts symptoms, family history, and social requirements into structured SOAP note templates in Dutch.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h4>Expected Impact</h4>
+                        <ul>
+                            <li><strong>Saves 5-8 Minutes Per Intake:</strong> Streamlines data entry directly into the patient's electronic medical record (EMR).</li>
+                            <li><strong>Deeper Diagnostic Accuracy:</strong> Captures crucial social determinants of health and background details that may get lost across language barriers.</li>
+                            <li><strong>Better Clinical Rapport:</strong> Medical staff focus entirely on eye contact and patient interaction, not keyboard typing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guardrail-box" style="background-color: rgba(13, 97, 86, 0.05); border: 1px solid rgba(13, 97, 86, 0.2); color: var(--primary-color);">
+                    <h5>🔒 GDPR and Privacy Architecture:</h5>
+                    All transcription processing must use enterprise-grade, zero-data-retention APIs (such as Azure OpenAI Service). No patient medical data is cached, recorded long-term, or used to train public LLM models.
+                </div>
+            </div>
+        </div>
+
+        <!-- Opportunity 3 -->
+        <div class="opp-card">
+            <div class="opp-accent-blue"></div>
+            <div class="opp-content">
+                <div class="opp-meta">
+                    <span class="badge badge-impact-med">Medium Impact</span>
+                    <span class="badge badge-comp-low">Low Complexity</span>
+                    <span class="badge badge-timeline">Timeline: 2-3 Weeks</span>
+                </div>
+                <div class="opp-title">
+                    <span class="opp-title-text"><span class="opp-icon">📢</span> Opportunity 3: AI-Powered Public Health Outreach & Campaign Generator</span>
+                </div>
+                <div class="opp-description">
+                    GVHV Deurne acts as an "actiecentrum" (action center) that campaigns on social determinants of health (such as shift work studies or pollution). This tool serves as a communications copilot, translating complex medical data, research papers, and political campaigns into accessible, plain-language patient flyers, newsletters, and social media posts.
+                </div>
+                
+                <div class="opp-details-grid">
+                    <div class="detail-block">
+                        <h4>How It Works</h4>
+                        <ul>
+                            <li><strong>Research Ingestion:</strong> Staff upload complex scientific documents (e.g., studies on the health effects of night-shift work).</li>
+                            <li><strong>Language Tailoring:</strong> The AI rewrites the content at a B1/A2 reading level (ideal for low-literacy or non-native readers).</li>
+                            <li><strong>Multi-Channel Adaptation:</strong> Automatically formats the medical conclusions into a newsletter draft, WhatsApp broadcast text, or Facebook post.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h4>Expected Impact</h4>
+                        <ul>
+                            <li><strong>Multiplied Outreach Efficiency:</strong> Accelerates the writing process for community flyers from days to minutes.</li>
+                            <li><strong>Improved Local Health Literacy:</strong> Breaks down complex preventative guidelines (e.g., heatwave precautions or dietary advice) into clear, actionable advice.</li>
+                            <li><strong>Consistent Voice:</strong> Keeps materials aligned with GVHV's empathetic, community-focused, and socially active brand voice.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Opportunity 4 -->
+        <div class="opp-card">
+            <div class="opp-accent-purple"></div>
+            <div class="opp-content">
+                <div class="opp-meta">
+                    <span class="badge badge-impact-high">High Impact</span>
+                    <span class="badge badge-comp-med">Medium Complexity</span>
+                    <span class="badge badge-timeline">Timeline: 6-8 Weeks</span>
+                </div>
+                <div class="opp-title">
+                    <span class="opp-title-text"><span class="opp-icon">📚</span> Opportunity 4: Internal Knowledge Portal for "Forfait" and Belgian Health Protocols</span>
+                </div>
+                <div class="opp-description">
+                    An internal chatbot designed exclusively for the GVHV Deurne clinical and administrative team. It retrieves correct information from complex Belgian social security regulations, RIZIV codes, flat-rate (forfaitair) system guidelines, and local social-work referral channels.
+                </div>
+                
+                <div class="opp-details-grid">
+                    <div class="detail-block">
+                        <h4>How It Works</h4>
+                        <ul>
+                            <li><strong>Internal Knowledge Base:</strong> Secure RAG architecture loaded with internal files, local partner directories, and official Belgian health manuals.</li>
+                            <li><strong>Prompt Queries:</strong> Staff query the tool: <em>"Where do we refer a patient in Deurne who needs free emergency dental care?"</em> or <em>"What is the billing procedure if a forfaitair patient is hospitalized?"</em></li>
+                            <li><strong>Verified Citations:</strong> The AI provides the precise workflow with document references and phone numbers to local partners.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h4>Expected Impact</h4>
+                        <ul>
+                            <li><strong>Saves Time:</strong> Clinicians and administrative staff instantly find reference materials without needing manual lookups.</li>
+                            <li><strong>Faster Onboarding:</strong> Accelerates training for new GPs, nurses, interns, or administrative staff joining the Deurne clinic.</li>
+                            <li><strong>Fewer Errors:</strong> Minimizes mistakes related to the complex flat-rate insurance billing system.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Feasibility and Impact Matrix -->
+    <div class="matrix-section">
+        <h3 class="overview-title" style="margin-bottom: 5px;">📊 Strategic Comparison & Impact Matrix</h3>
+        <p style="color: var(--text-light); margin: 0 0 25px 0;">Prioritizing Generative AI initiatives based on ease of implementation and organizational impact.</p>
+        
+        <div class="matrix-container">
+            <div class="matrix-text">
+                <p>To maximize value and build momentum, we recommend a phased implementation starting with the <strong>Multilingual Patient Navigator Chatbot</strong>. This directly answers Laurent Desmet’s request and acts as a foundation for safe AI deployment within the clinic.</p>
+                <ul>
+                    <li><strong>Quick Win:</strong> <em>Opportunity 3 (Campaign Generator)</em> requires minimal technical setup and immediately boosts community outreach.</li>
+                    <li><strong>High-Value Core:</strong> <em>Opportunity 1 (Navigator Chatbot)</em> provides immediate, high-impact relief to front-office administrative congestion.</li>
+                    <li><strong>Long-Term Excellence:</strong> <em>Opportunity 2 (Intake Assistant)</em> offers massive medical value but requires careful attention to GDPR compliance and electronic medical record (EMR) integrations.</li>
+                </ul>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Opportunity</th>
+                            <th>Impact</th>
+                            <th>Complexity</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Web Chatbot</strong></td>
+                            <td style="color: var(--primary-color); font-weight: 700;">High</td>
+                            <td style="color: #2ecc71; font-weight: 700;">Low</td>
+                            <td style="color: var(--secondary-color); font-weight: 700;">★★★★★</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Intake Companion</strong></td>
+                            <td style="color: var(--primary-color); font-weight: 700;">High</td>
+                            <td style="color: #f1c40f; font-weight: 700;">Medium</td>
+                            <td style="color: var(--secondary-color); font-weight: 700;">★★★★☆</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Campaign Gen</strong></td>
+                            <td style="color: #3498db; font-weight: 700;">Medium</td>
+                            <td style="color: #2ecc71; font-weight: 700;">Low</td>
+                            <td style="color: var(--secondary-color); font-weight: 700;">★★★★☆</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Knowledge Portal</strong></td>
+                            <td style="color: var(--primary-color); font-weight: 700;">High</td>
+                            <td style="color: #f1c40f; font-weight: 700;">Medium</td>
+                            <td style="color: var(--secondary-color); font-weight: 700;">★★★☆☆</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Implementation Roadmap -->
+    <div class="section-header">
+        <h2>Implementation Roadmap</h2>
+        <p>A structured crawl-walk-run path to safely bring GenAI online at GVHV Deurne.</p>
+    </div>
+
+    <ul class="timeline">
+        <li class="timeline-item">
+            <span class="timeline-badge">Phase 1: Foundation (Month 1)</span>
+            <h4 class="timeline-title">Build & Launch the Web Chatbot (Opportunity 1)</h4>
+            <p class="timeline-desc">Build a secure Retrieval-Augmented Generation chatbot utilizing OpenAI API models on Microsoft Azure. Load the knowledge base with the clinic’s administrative rules, FAQs, and Digitale Wachtkamer instructions. Program clear medical triage rules and embed the chatbot on the primary website.</p>
+        </li>
+        <li class="timeline-item">
+            <span class="timeline-badge">Phase 2: Outreach & Internal Tools (Months 2-3)</span>
+            <h4 class="timeline-title">Launch Campaign Copilot & Knowledge Assistant (Opportunities 3 & 4)</h4>
+            <p class="timeline-desc">Set up a customized writing environment (using tools like custom GPTs or LangChain) for the communication team to easily draft social medicine materials. Simultaneously, ingest clinic procedure documents into an internal search assistant to support administrative staff.</p>
+        </li>
+        <li class="timeline-item">
+            <span class="timeline-badge">Phase 3: Clinical Integration (Months 4-6)</span>
+            <h4 class="timeline-title">Develop Clinical Intake Companion (Opportunity 2)</h4>
+            <p class="timeline-desc">Establish a secure pilot program with a small group of nurses and social workers. Introduce translation and intake transcribing tablets, test structured SOAP note output, and ensure strict alignment with European GDPR standards and patient-consent guidelines.</p>
+        </li>
+    </ul>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Generative AI Healthcare Consulting. Tailored for Geneeskunde voor het Volk Deurne.</p>
+        <p style="font-size: 11px; margin-top: 5px;">This report has been developed for planning and strategic direction. All medical AI integrations must comply with local Belgian healthcare frameworks and GDPR regulations.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
