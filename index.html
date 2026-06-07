@@ -3,7 +3,7 @@
 <head>
     
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2026/05/31/17/20260531172603-QFUQIKB7.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2026/05/31/17/20260531172603-QFUQIKB7.js" defer></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,6 +186,7 @@
         @media (max-width: 768px) {
             .about-grid { grid-template-columns: 1fr; }
             header h1 { font-size: 3rem; }
+            .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
         }
 
         .glass-card {
@@ -278,6 +279,28 @@
             color: #4ade80;
         }
 
+        /* Consultation Form */
+        .consultation-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: -2rem auto 3rem auto;
+            opacity: 0.75;
+        }
+
+        .form-container {
+            max-width: 760px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .form-container iframe {
+            width: 100%;
+            min-height: 784px;
+            border: 0;
+            border-radius: 16px;
+            background: white;
+        }
+
         footer {
             padding: 4rem 2rem;
             text-align: center;
@@ -305,6 +328,7 @@
             <a href="#about">About</a>
             <a href="#course">Course</a>
             <a href="#submissions">Submissions</a>
+            <a href="#consultation">Consultation</a>
         </div>
     </nav>
 
@@ -346,7 +370,7 @@
                 <p style="opacity: 0.8;">
                     My journey spans from clinical primary care nursing to academic excellence, having received the award for the most academic master's thesis in 2023. I am now integrating AI-driven automation into my research workflow to enhance productivity and scientific communication.
                 </p>
-                <a href="#" class="btn btn-primary" style="margin-top: 2rem; padding: 0.8rem 1.5rem;">Contact for Collaboration</a>
+                <a href="#consultation" class="btn btn-primary" style="margin-top: 2rem; padding: 0.8rem 1.5rem;">Contact for Consultation</a>
             </div>
         </div>
     </section>
@@ -435,6 +459,16 @@
                 </div>
                 <span class="status-badge" style="color: var(--accent); border-color: var(--accent);">Coming Soon</span>
             </a>
+        </div>
+    </section>
+
+    <section id="consultation">
+        <h2 class="section-title">Contact for Consultation</h2>
+        <p class="consultation-intro">
+            Interested in discussing a consultation, collaboration, or AI-supported research workflow? Please complete the form below and I will follow up with you.
+        </p>
+        <div class="glass-card form-container">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf16pPAooFIR5Hp6m_6g57_8EGyKxKh_adTIEjed4ZdBnKS5Q/viewform?embedded=true" width="640" height="784" frameborder="0" marginheight="0" marginwidth="0">Laden…</iframe>
         </div>
     </section>
 
